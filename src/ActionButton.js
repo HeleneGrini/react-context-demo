@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AppContext } from "./AppContext";
 
-const ActionButton = props => (
-  <AppContext.Consumer>
-    {({ appState, onActionButtonClick }) => (
-      <button
-        type="button"
-        className={`btn btn-${appState.theme} mt-5`}
-        onClick={onActionButtonClick}
-      >
-        {props.children}
-      </button>
-    )}
-  </AppContext.Consumer>
-);
+const ActionButton = props => {
+  const context = useContext(AppContext);
+
+  return (
+    <button
+      type="button"
+      className={`btn btn-${context.appState.theme} mt-5`}
+      onClick={context.onActionButtonClick}
+    >
+      {props.children}
+    </button>
+  );
+};
 
 export default ActionButton;

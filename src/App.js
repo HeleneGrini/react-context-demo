@@ -19,6 +19,7 @@ const App = () => {
         ? { ...appState, theme: "dark" }
         : { ...appState, theme: "light" }
     );
+
   return (
     <AppContext.Provider value={{ appState, onActionButtonClick }}>
       <AppWrapper>
