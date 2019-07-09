@@ -3,12 +3,13 @@ import "./AppWrapper.css";
 import { AppContext } from "./AppContext";
 
 export default props => {
-  const syktLameNavngivning = useContext(AppContext);
+  const [appState, dispatch] = useContext(AppContext);
+
   return (
     <div
       className="AppWrapper"
       style={
-        syktLameNavngivning.appState.theme === "dark"
+        appState.theme === "dark"
           ? { backgroundColor: "#121212", color: "white" }
           : { backgroundColor: "white" }
       }

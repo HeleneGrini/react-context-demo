@@ -2,13 +2,17 @@ import React, { useContext } from "react";
 import { AppContext } from "./AppContext";
 
 const ActionButton = props => {
-  const context = useContext(AppContext);
+  const [appState, dispatch] = useContext(AppContext);
 
   return (
     <button
       type="button"
-      className={`btn btn-${context.appState.theme} mt-5`}
-      onClick={context.onActionButtonClick}
+      className={`btn btn-${appState.theme} mt-5`}
+      onClick={() =>
+        dispatch({
+          type: "theme"
+        })
+      }
     >
       {props.children}
     </button>

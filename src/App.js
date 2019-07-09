@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import AppWrapper from "./AppWrapper";
 import Page from "./Page";
-import { AppContext } from "./AppContext";
+import { AppContext, reducer } from "./AppContext";
 
 const initialAppState = {
   user: {
@@ -11,22 +11,12 @@ const initialAppState = {
   theme: "dark"
 };
 
-const App = () => {
-  const [appState, setAppState] = useState(initialAppState);
-  const onActionButtonClick = () =>
-    setAppState(
-      appState.theme === "light"
-        ? { ...appState, theme: "dark" }
-        : { ...appState, theme: "light" }
-    );
-
-  return (
-    <AppContext.Provider value={{ appState, onActionButtonClick }}>
-      <AppWrapper>
-        <Page />
-      </AppWrapper>
-    </AppContext.Provider>
-  );
-};
+const App = () => (
+  <AppContext.Provider value={useReducer(reducer, initialAppState)}>
+    <AppWrapper>
+      <Page />
+    </AppWrapper>
+  </AppContext.Provider>
+);
 
 export default App;
