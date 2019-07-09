@@ -4,7 +4,7 @@ const ActionButton = props => {
   return (
     <button
       type="button"
-      className={`btn btn-${props.theme}`}
+      className={`btn btn-${props.theme} mt-5`}
       onClick={props.onClick}
     >
       {props.children}
