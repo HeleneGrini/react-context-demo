@@ -1,15 +1,17 @@
 import React from "react";
 import ActionButton from "./ActionButton";
+import { AppContext } from "./AppContext";
 
 const Profile = props => (
-  <>
-    <h1> Hei, {props.user.name}</h1>
-
-    <div> Din roll er: {props.user.role}</div>
-    <ActionButton theme={props.theme} onClick={props.onActionButtonClick}>
-      Bytt fargetema
-    </ActionButton>
-  </>
+  <AppContext.Consumer>
+    {({ appState }) => (
+      <>
+        <h1> Hei, {appState.user.name}</h1>
+        <div> Din roll er: {appState.user.role}</div>
+        <ActionButton>Bytt fargetema</ActionButton>
+      </>
+    )}
+  </AppContext.Consumer>
 );
 
 export default Profile;

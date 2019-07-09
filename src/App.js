@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AppWrapper from "./AppWrapper";
 import Page from "./Page";
+import { AppContext } from "./AppContext";
 
 const initialAppState = {
   user: {
@@ -18,15 +19,12 @@ const App = () => {
         ? { ...appState, theme: "dark" }
         : { ...appState, theme: "light" }
     );
-
   return (
-    <AppWrapper theme={appState.theme}>
-      <Page
-        user={appState.user}
-        onActionButtonClick={onActionButtonClick}
-        theme={appState.theme}
-      />
-    </AppWrapper>
+    <AppContext.Provider value={{ appState, onActionButtonClick }}>
+      <AppWrapper>
+        <Page />
+      </AppWrapper>
+    </AppContext.Provider>
   );
 };
 
